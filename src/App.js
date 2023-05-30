@@ -2,7 +2,22 @@ import './App.css'
 import { useState, useEffect } from 'react'
 
 /*
-What are the different order lists for frontend development skills based on categories?
+what skills do I need to learn if I want to become a (Goal)? Answer in tree data structure format without any extra words, if learning skill1 depending on skill2 then skill 2 should be parent node of skill 1.
+
+Answer in the following format:
+(Skill: Parent)
+
+Here is an example to follow:
+(HTML, None)
+(CSS, None)
+(JavaScript, None)
+(DOM Manipulation, JavaScript)
+(CSS Frameworks, CSS)
+(Bootstrap, CSS Frameworks)
+(JavaScript Libraries, JavaScript)
+(jQuery, JavaScript Libraries)
+(Redux, React)
+(Angular, JavaScript Libraries)
 */
 
 const App = () => {
