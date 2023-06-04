@@ -1,5 +1,9 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+// const Web3 = require('web3')
+// const rpcURL = "https://mainnet.infura.io/2QXqmuKDyUMAzRZx5Mj5rljc354"
+// const web3 = new Web3(rpcURL)
+// const address = 30945673c3a2278778c54cbd7c991d51
 
 /*
 what skills do I need to learn if I want to become a ${value}? Answer in tree data structure format without any extra words, if learning skill1 depending on skill2 then skill 2 should be parent node of skill 1.\n\
