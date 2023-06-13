@@ -1,34 +1,27 @@
 import './App.css'
 import { useState, useEffect } from 'react'
-// const Web3 = require('web3')
-// const rpcURL = "https://mainnet.infura.io/2QXqmuKDyUMAzRZx5Mj5rljc354"
-// const web3 = new Web3(rpcURL)
-// const address = 30945673c3a2278778c54cbd7c991d51
 
 /*
-what skills do I need to learn if I want to become a ${value}? Answer in tree data structure format without any extra words, if learning skill1 depending on skill2 then skill 2 should be parent node of skill 1.\n\
-Answer in the following format:\n\
-(Skill, SkillID, Parent, ParentID)|\n\
-Here is an example to follow:\n\
-(HTML, 1, None, 0)|\n\
-(CSS, 2, None, 0)|\n\
-(JavaScript, 3, None, 0)|\n\
-(DOM Manipulation, 4, JavaScript, 3)|\n\
-(CSS Frameworks, 5, CSS, 2)|\n\
-(Bootstrap, 6, CSS Frameworks, 5)|\n\
-(JavaScript Libraries, 7, JavaScript, 3)|\n\
-(jQuery, 8, JavaScript Libraries, 7)|\n\
-(React, 9, JavaScript Libraries, 7)|
-(Redux, 10, React, 9)|\n\
-(Angular, 11, JavaScript Libraries, 7)
+what skills do I need to learn if I want to become a (Goal)? Answer in tree data structure format without any extra words, if learning skill1 depending on skill2 then skill 2 should be parent node of skill 1.
+
+Answer in the following format:
+(Skill: Parent)
+
+Here is an example to follow:
+(HTML, None)
+(CSS, None)
+(JavaScript, None)
+(DOM Manipulation, JavaScript)
+(CSS Frameworks, CSS)
+(Bootstrap, CSS Frameworks)
+(JavaScript Libraries, JavaScript)
+(jQuery, JavaScript Libraries)
+(Redux, React)
+(Angular, JavaScript Libraries)
 */
 
 const App = () => {
   const [value, setValue] = useState("")
-  const filtered_Input = `what skills do I need to learn if I want to become a ${value}? Answer in tree data structure format without any extra words, if learning skill1 depending on skill2 then skill 2 should be parent node of skill 1.\n\
-  Answer in the following format:\n\
-Skill, SkillID, Parent, ParentID| Here is an example to follow:\n\
-HTML, 1, None, 0|CSS, 2, None, 0|JavaScript, 3, None, 0|DOM Manipulation, 4, JavaScript, 3|CSS Frameworks, 5, CSS, 2|Bootstrap, 6, CSS Frameworks, 5|JavaScript Libraries, 7, JavaScript, 3|jQuery, 8, JavaScript Libraries, 7|React, 9, JavaScript Libraries, 7|Redux, 10, React, 9|Angular, 11, JavaScript Libraries, 7`
   const [message, setMessage] = useState(null)
   const [prevChats, setPrevChats] = useState([])
   const [curTitle, setCurTitle] = useState(null)
@@ -52,24 +45,13 @@ HTML, 1, None, 0|CSS, 2, None, 0|JavaScript, 3, None, 0|DOM Manipulation, 4, Jav
           "Content-type": 'application/json',
       },
       body: JSON.stringify ({
-          message: filtered_Input,
+          message: value,
       })
     }
     try {
       const response = await fetch('http://localhost:8000/completions', options)
       const data = await response.json()
       setMessage(data.choices[0].message)
-      const MsgContent = data.choices[0].message.content
-
-
-      // Split message into skillInfos
-      const skillInfos = MsgContent.split("|")
-      for (const InfoString of skillInfos) {
-        const InfoArray = InfoString.split(", ")
-        console.log(InfoArray)
-        
-      }
-
       // contract.addMonster()
     } catch (error) {
       console.log(error)
@@ -78,6 +60,7 @@ HTML, 1, None, 0|CSS, 2, None, 0|JavaScript, 3, None, 0|DOM Manipulation, 4, Jav
 
   // This will sets the current title of the chat, and append more to each chat
   useEffect(() => {
+    console.log(curTitle, value, message)
     if (!curTitle && value && message) {
       setCurTitle(value)
     }
@@ -104,6 +87,7 @@ HTML, 1, None, 0|CSS, 2, None, 0|JavaScript, 3, None, 0|DOM Manipulation, 4, Jav
   // get every title from previous chats
   const uniqueTitles = Array.from(new Set(prevChats.map(prevChat => prevChat.title)))
   
+  console.log(message)
   return (
     <div className="app">
       <section className='side-bar'>
